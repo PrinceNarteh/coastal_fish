@@ -25,8 +25,8 @@ export const products = [
   },
   {
     id: 4,
-    name: "Doctor Fish",
-    price: 35,
+    name: "Cassava Fish",
+    price: 50,
     preference: "Smoked",
     productImage: "/static/img/products/doctor-fish.jpg",
   },
@@ -80,7 +80,7 @@ const Products = () => {
 
       <style jsx>{`
         section {
-          padding: 11rem 0 5rem;
+          padding: 9rem 0 5rem;
           width: 90%;
           margin: 0 auto;
         }

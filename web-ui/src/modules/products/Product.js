@@ -24,7 +24,7 @@ const Product = ({ product }) => {
         <Link href={`/products/${id}`}>
           <a className="btn">Details</a>
         </Link>
-        <button type="button" onClick={() => handleAddToCart(product)}>
+        <button className="btn" type="button" onClick={() => handleAddToCart(product)}>
           Add To Cart
         </button>
       </div>
@@ -107,6 +107,18 @@ const ProductStyled = styled.div`
   &:hover .product__actions {
     opacity: 1;
     transform: scale(1.05);
+  }
+
+  .btn {
+    background: none;
+    border: 2px solid #fff;
+    padding: 0.8rem 1.5rem;
+    color: #fff;
+    border-radius: 5rem;
+    font-size: 1.4rem;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
   }
 `;
 

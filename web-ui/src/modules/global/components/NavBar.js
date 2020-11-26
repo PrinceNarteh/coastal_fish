@@ -11,7 +11,7 @@ const NavBar = () => {
       <a href="/" className="logo">
         CoastalFish
       </a>
-      <ul>
+      {/* <ul>
         <li>
           <Link href="/">
             <a>Home</a>
@@ -34,7 +34,8 @@ const NavBar = () => {
             </a>
           </Link>
         </li>
-      </ul>
+      </ul> */}
+      <StyledHamburger />
     </Wrapper>
   );
 };
@@ -77,6 +78,39 @@ const Wrapper = styled.div`
     border-radius: 50%;
     text-align: center;
     z-index: 1;
+  }
+`;
+
+const StyledHamburger = styled.button`
+  width: 3rem;
+  height: 0.3rem;
+  background-color: #fff;
+  position: relative;
+  height: 3rem;
+  width: 3rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 2.8rem;
+    height: 0.3rem;
+    background-color: #fff;
+    top: 0rem;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 2.8rem;
+    height: 0.3rem;
+    background-color: #fff;
+    top: 2.5rem;
   }
 `;
 

@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-const Button = ({ children }) => {
-  return <ButtonStyled>{children}</ButtonStyled>;
+const Button = ({ children, danger }) => {
+  return <ButtonStyled danger={danger}>{children}</ButtonStyled>;
 };
 
 const ButtonStyled = styled.button`
-  background-color: teal;
+  background-color: ${(props) => (props.danger ? "crimson" : "teal")};
   border: none;
   color: white;
   padding: 0.8rem 2rem;

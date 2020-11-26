@@ -5,6 +5,7 @@ import App from "next/app";
 import GlobalStyle from "../modules/global/components/base/GlobalStyle";
 import { LayoutProvider } from "../modules/global/components/Layout";
 import NavBar from "../modules/global/components/NavBar";
+import Navigation from "../modules/global/components/Navigation";
 // import { AppEventProvider } from "../src/global/hooks/useAppEvent";
 
 class MyApp extends App {
@@ -28,7 +29,8 @@ class MyApp extends App {
           <RecoilRoot>
             <GlobalStyle />
             <AnimatePresence exitBeforeEnter>
-              <NavBar />
+              {/* <NavBar /> */}
+              <Navigation />
               <Component {...pageProps} />
             </AnimatePresence>
           </RecoilRoot>

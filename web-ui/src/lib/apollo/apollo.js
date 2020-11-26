@@ -3,7 +3,7 @@ import Head from "next/head";
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
-// import { createUploadLink } from "apollo-upload-client";
+import { createUploadLink } from "apollo-upload-client";
 import { ApolloProvider } from "@apollo/react-hooks";
 
 // import customFetch from "./custom-fetch";
@@ -18,11 +18,11 @@ const httpLink = new HttpLink({
   credentials: "same-origin",
   // fetch: customFetch,
 });
-// const uploadLink = createUploadLink({
-//   uri: GRAPHQL_ENDPOINT,
-//   headers: { "keep-alive": true },
-//   credentials: "same-origin"
-// });
+const uploadLink = createUploadLink({
+  uri: GRAPHQL_ENDPOINT,
+  headers: { "keep-alive": true },
+  credentials: "same-origin",
+});
 
 /**
  * Creates and provides the apolloContext
@@ -45,8 +45,7 @@ export function withApollo(PageComponent, { ssr = true } = {}) {
 
   // Set the correct displayName in development
   if (process.env.NODE_ENV !== "production") {
-    const displayName =
-      PageComponent.displayName || PageComponent.name || "Component";
+    const displayName = PageComponent.displayName || PageComponent.name || "Component";
 
     if (displayName === "App") {
       console.warn("This withApollo HOC only works with PageComponents.");
@@ -148,7 +147,7 @@ function createApolloClient(initialState = {}) {
 
   const client = new ApolloClient({
     ssrMode: typeof window === "undefined", // Disables forceFetch on the server (so queries are only run once)
-    link: errorLink.concat(httpLink),
+    link: errorLink.concat(uploadLink),
     cache,
   });
 
