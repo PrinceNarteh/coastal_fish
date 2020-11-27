@@ -1,11 +1,7 @@
 import styled from "styled-components";
-import { useRecoilValue } from "recoil";
-import { cartTotal } from "../../lib/recoil/selectors";
-import Button from "../global/components/Button";
 import CartItem from "./CartItem";
 
 const CartList = ({ cart }) => {
-  const total = useRecoilValue(cartTotal);
   return (
     <CartListStyled>
       <table>
@@ -22,22 +18,6 @@ const CartList = ({ cart }) => {
           {cart.map((item, idx) => (
             <CartItem id={item.id} item={item} idx={idx + 1} />
           ))}
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td className="total">Total:</td>
-            <td className="total"> {total}</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-              <Button>Checkout</Button>
-            </td>
-          </tr>
         </tbody>
       </table>
     </CartListStyled>

@@ -57,13 +57,13 @@ const GET_PRODUCTS = gql`
 const Styled = styled.div`
   width: 100%;
   min-height: 100vh;
-  /* padding-top: 9rem; */
   position: relative;
   background-image: url("/static/img/background.jpg");
   background-color: crimson;
   background-size: cover;
   display: flex;
   align-items: center;
+  overflow: hidden;
 
   .content {
     width: 90%;

@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { totalItemsInCart } from "../../../lib/recoil/selectors";
+import Search from "../../products/Search";
 
 const LogoStyled = styled.div`
   display: flex;
@@ -92,16 +94,18 @@ const Logo = styled.div`
 
 const RightNav = ({ open }) => {
   const totalItems = useRecoilValue(totalItemsInCart);
+  const { pathname } = useRouter();
+
+  console.log(pathname);
+
   return (
     <>
       <LogoStyled>
         <Logo>
           <img src="/static/img/logo.png" alt="" />
         </Logo>
-        {/* <span>
-          Coastal <br /> Fish
-        </span> */}
       </LogoStyled>
+      {pathname === "/products" ? <Search /> : null}
       <Ul open={open}>
         <>
           <li>
@@ -142,23 +146,15 @@ const RightNav = ({ open }) => {
             <div className="profile-picture">
               <img src="/static/img/users/profile.jpeg" alt="" />
             </div>
-            <div className="menu">
+            {/* <div className="menu">
               <h1>Prince Narteh</h1>
               <ul>
                 <li>
                   <img src="/static/img/icons/user.png" alt="User profile" />
                   <a href="#">My Profile</a>
                 </li>
-                <li>
-                  <img src="/static/img/icons/user.png" alt="User profile" />
-                  <a href="#">My Profile</a>
-                </li>
-                <li>
-                  <img src="/static/img/icons/user.png" alt="User profile" />
-                  <a href="#">My Profile</a>
-                </li>
               </ul>
-            </div>
+            </div> */}
           </li>
         </>
       </Ul>

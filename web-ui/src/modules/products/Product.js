@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { cartState, addToBasket } from "../../lib/recoil/atoms";
@@ -14,7 +15,7 @@ const Product = ({ product }) => {
   return (
     <ProductStyled className="product">
       <div className="product__image">
-        <img src={productImage} alt="" />
+        <Image src={productImage} width={370} height={225} alt="" />
       </div>
       <div className="product__content">
         <h3 className="product__name">{name}</h3>
@@ -42,8 +43,6 @@ const ProductStyled = styled.div`
   transition: 0.3s ease-in-out 0s;
 
   .product__image {
-    width: 37rem;
-    height: 22.5rem;
     border: 1px solid #fff;
     transform: rotate(11deg);
     border-radius: 5rem;

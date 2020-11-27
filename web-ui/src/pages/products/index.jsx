@@ -1,5 +1,4 @@
 import Product from "../../modules/products/Product";
-import Search from "../../modules/products/Search";
 
 export const products = [
   {
@@ -70,8 +69,6 @@ export const products = [
 const Products = () => {
   return (
     <section>
-      <Search />
-
       <div className="products">
         {products.map((product) => (
           <Product key={product.id} product={product} />

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import CartList from "../modules/cart/CartList";
 import { useRecoilValue } from "recoil";
 import { cartState } from "../lib/recoil/atoms";
+import Checkout from "../modules/global/components/Checkout";
 
 const Cart = () => {
   const cart = useRecoilValue(cartState);
@@ -15,14 +16,17 @@ const Cart = () => {
     return (
       <CartStyled>
         <CartList cart={cart} />
+        <Checkout />
       </CartStyled>
     );
   }
 };
 
 const CartStyled = styled.div`
+  display: grid;
+  grid-template-columns: 70% 30%;
   padding-top: 11rem;
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
   height: 90vh;
 `;

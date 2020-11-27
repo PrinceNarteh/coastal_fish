@@ -18,7 +18,6 @@ const Styled = styled.div`
   margin-right: 2rem;
   display: flex;
   justify-content: center;
-  margin-bottom: 3rem;
 
   .search-box {
     border: 0.2rem solid #ccc;

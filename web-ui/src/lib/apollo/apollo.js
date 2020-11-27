@@ -141,6 +141,11 @@ function initApolloClient(initialState) {
  */
 function createApolloClient(initialState = {}) {
   const cache = new InMemoryCache().restore(initialState);
+  cache.writeData({
+    data: {
+      cart: [],
+    },
+  });
 
   // Default Client state
   // createClientState(cache);
