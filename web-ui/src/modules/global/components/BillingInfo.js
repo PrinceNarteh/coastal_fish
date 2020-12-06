@@ -1,62 +1,82 @@
 import styled from "styled-components";
+import { useState, Fragment } from "react";
 import { useRecoilValue } from "recoil";
 import { cartTotal } from "../../../lib/recoil/selectors";
-import Button from "../components/Button";
+import Button from "./Button";
+import Title from "./Title";
 
-const Checkout = () => {
+const BillingInfo = ({ handleOpenAlert }) => {
   const total = useRecoilValue(cartTotal);
+  const [deliveryMode, setDeliveryMode] = useState("deliver");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleOpenAlert(true);
+  };
+
+  const handleDeliveryMode = (e) => {
+    setDeliveryMode(e.target.value);
+  };
 
   return (
     <StyledCheckout>
-      <Price>
-        <h3>Cart Total</h3>
-        <p>Ghs</p>
-        <h6>{total}</h6>
-      </Price>
       <Delivery>
-        <h1>Delivery Info</h1>
-        <form action="">
-          <label class="custom-field one">
-            <input type="text" required />
-            <span class="placeholder">Full name</span>
-          </label>
+        <Title align="left">Delivery Info</Title>
+        <div className="radio" onChange={(e) => handleDeliveryMode(e)}>
+          <Fragment>
+            <input
+              type="radio"
+              id="deliver"
+              value="deliver"
+              name="delivery"
+              checked={deliveryMode === "deliver"}
+            />
+            <label htmlFor="deliver">Deliver to me (At a fee)</label>
+          </Fragment>
+          <Fragment>
+            <input
+              type="radio"
+              id="pickUp"
+              value="pickUp"
+              name="delivery"
+              checked={deliveryMode === "pickUp"}
+            />
+            <label htmlFor="pickUp">I'll pick it up</label>
+          </Fragment>
+        </div>
+        {deliveryMode === "deliver" ? (
+          <form onSubmit={handleSubmit}>
+            <label class="custom-field one">
+              <input type="text" required />
+              <span class="placeholder">Customer Name</span>
+            </label>
 
-          <label class="custom-field one">
-            <input type="text" required />
-            <span class="placeholder">Address</span>
-          </label>
+            <label class="custom-field one">
+              <input type="text" required />
+              <span class="placeholder">Delivery Address</span>
+            </label>
 
-          <label class="custom-field one">
-            <input type="text" required />
-            <span class="placeholder">Town/City</span>
-          </label>
+            <label class="custom-field one">
+              <input type="text" required />
+              <span class="placeholder">Town/City</span>
+            </label>
 
-          <label class="custom-field one">
-            <input type="tel" required />
-            <span class="placeholder">Phone Number</span>
-          </label>
+            <label class="custom-field one">
+              <input type="tel" required />
+              <span class="placeholder">Phone Number</span>
+            </label>
 
-          <div className="radio">
-            <div>
-              <input type="radio" id="pickUp" name="delivery" />
-              <label htmlFor="pickUp">I'll pick it up</label>
+            <div className="button-wrapper">
+              <Button>Checkout</Button>
             </div>
-            <div>
-              <input type="radio" id="deliver" name="delivery" />
-              <label htmlFor="deliver">Deliver to me (At a fee)</label>
-            </div>
-          </div>
-          <div className="button-wrapper">
-            <Button>Checkout</Button>
-          </div>
-        </form>
+          </form>
+        ) : null}
       </Delivery>
     </StyledCheckout>
   );
 };
 
 const StyledCheckout = styled.div`
-  /* background: crimson; */
   padding: 0 1rem;
 `;
 
@@ -167,12 +187,19 @@ const Delivery = styled.div`
   }
 
   .radio {
-    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
 
     input {
       margin: 0.5rem;
     }
+
+    label {
+      padding-right: 2rem;
+    }
   }
 `;
 
-export default Checkout;
+export default BillingInfo;

@@ -8,9 +8,14 @@ const ProductDetail = (props) => {
   return (
     <>
       <ProductDetailStyled>
+        <Back>
+          <Link href="/products">
+            <a>&#8592; Back To Products</a>
+          </Link>
+        </Back>
         <div className="product">
           <div className="product-image">
-            <img src="/static/img/products/cassava-fish.jpeg" />
+            <img src="/static/img/products/shrimps.jpg" />
           </div>
           <div className="product-info">
             <h1>Cassava Fish</h1>
@@ -19,18 +24,24 @@ const ProductDetail = (props) => {
               repudiandae culpa impedit ratione aliquam.
             </p>
             <h3>GH¢ 50</h3>
-            <p>
-              Preference:
-              <select name="" id="">
-                <option value="fresh">Fresh</option>
-                <option value="smoked">Smoked</option>
-                <option value="fried">Fried</option>
-              </select>
-            </p>
-            <p>
-              Quantity:
-              <input type="number" min="1" defaultValue="1" />
-            </p>
+            <table>
+              <tr>
+                <th>Preference:</th>
+                <td>
+                  <select name="" id="">
+                    <option value="fresh">Fresh</option>
+                    <option value="smoked">Smoked</option>
+                    <option value="fried">Fried</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>Quantity:</th>
+                <td>
+                  <input type="number" min="1" defaultValue="1" />
+                </td>
+              </tr>
+            </table>
             <Button>Add to Basket</Button>
           </div>
         </div>
@@ -52,21 +63,34 @@ const ProductDetail = (props) => {
   );
 };
 
+const Back = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+`;
+
 const ProductDetailStyled = styled.div`
   padding-top: 11rem;
   width: 90%;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
 
   & .product {
-    min-height: 60vh;
-    width: 60%;
-    margin: 0 auto;
     display: flex;
-    border-radius: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    width: 860px;
 
     .product-image {
-      width: 100%;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+      position: relative;
+      width: 50%;
+      height: 475px;
+      box-shadow: -15px 0 35px rgba(0, 0, 0, 0.1), 0 -15px 35px rgba(0, 0, 0, 0.1),
+        0 15px 35px rgba(0, 0, 0, 0.1);
+      border-radius: 1rem;
+      overflow: hidden;
 
       img {
         width: 100%;
@@ -76,7 +100,12 @@ const ProductDetailStyled = styled.div`
     }
 
     .product-info {
-      padding: 2rem 2rem 2rem 5rem;
+      width: 50%;
+      background-color: #fff;
+      z-index: 1;
+      padding: 35px 40px;
+      box-shadow: 15px 0 35px rgba(0, 0, 0, 0.1), 0 -15px 35px rgba(0, 0, 0, 0.1),
+        0 15px 35px rgba(0, 0, 0, 0.1);
 
       h1 {
         font-size: 3rem;
@@ -88,6 +117,19 @@ const ProductDetailStyled = styled.div`
         font-size: 2.2rem;
         color: crimson;
       }
+
+      table {
+        border-collapse: separate;
+        border-spacing: 0 1rem;
+      }
+    }
+  }
+
+  @media all and (max-width: 870px) {
+    flex-direction: column;
+
+    .product {
+      flex-direction: column;
     }
   }
 
@@ -144,6 +186,10 @@ const RelatedProductsStyled = styled.div`
 
 const Title = styled.h1`
   font-size: 3rem;
+
+  & .product {
+    width: 100%;
+  }
 `;
 
 export default ProductDetail;

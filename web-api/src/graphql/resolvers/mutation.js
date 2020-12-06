@@ -12,7 +12,6 @@ module.exports = {
     // if (!admin) {
     //   throw new ForbiddenError("You don't have permission to perform this operation.");
     // }
-    console.log(args);
     const { image, name } = args;
     const { url } = await fileUpload(image, name);
 
@@ -64,17 +63,7 @@ module.exports = {
       phoneNumber,
       role,
     } = signUpInput;
-    if (
-      firstName === "" ||
-      lastName === "" ||
-      username === "" ||
-      email === "" ||
-      password === "" ||
-      address === "" ||
-      phoneNumber === ""
-    ) {
-      return "Please fill all the field.";
-    }
+
     console.log(email);
 
     email.trim().toLowerCase();

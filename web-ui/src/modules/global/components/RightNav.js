@@ -96,8 +96,6 @@ const RightNav = ({ open }) => {
   const totalItems = useRecoilValue(totalItemsInCart);
   const { pathname } = useRouter();
 
-  console.log(pathname);
-
   return (
     <>
       <LogoStyled>

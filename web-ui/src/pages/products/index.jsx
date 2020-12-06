@@ -1,4 +1,7 @@
 import Product from "../../modules/products/Product";
+import { useQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+import { withApollo } from "../../lib/apollo/apollo";
 
 export const products = [
   {
@@ -66,7 +69,25 @@ export const products = [
   },
 ];
 
+const GET_PRODUCTS = gql`
+  query {
+    products {
+      id
+      name
+      description
+      price
+      inStock
+    }
+  }
+`;
+
 const Products = () => {
+  const { loading, error, data } = useQuery(GET_PRODUCTS);
+
+  console.log(loading);
+  console.log(error);
+  console.log(data);
+
   return (
     <section>
       <div className="products">
@@ -92,4 +113,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default withApollo(Products);
