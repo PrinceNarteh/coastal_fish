@@ -31,6 +31,7 @@ const CartSummary = () => {
       </Row>
 
       <h1>Mode of Payment</h1>
+      <div></div>
     </div>
   );
 };
