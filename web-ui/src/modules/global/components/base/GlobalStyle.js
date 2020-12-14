@@ -5,8 +5,6 @@ import typography from "./typography";
 import utilities from "./utilities";
 import media from "./media";
 
-
-
 const GlobalStyle = () => (
   <ThemeProvider theme={{}}>
     <Style />
@@ -63,6 +61,7 @@ const Style = createGlobalStyle`
         width: 100vw;
         height: 100%;
         border: 0;
+        overflow-x: hidden;
     }
 
     ${typography}

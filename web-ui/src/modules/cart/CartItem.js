@@ -32,7 +32,10 @@ const CartItem = ({ item, idx }) => {
           <div className="item-detail">
             <h4>{name}</h4>
             <p>GH¢ {price}</p>
-            <button className="remove-btn" onClick={() => handleRemoveFromCart(id)}>
+            <button
+              className="remove-btn"
+              onClick={() => handleRemoveFromCart(id)}
+            >
               Remove
             </button>
           </div>
@@ -102,6 +105,13 @@ const CartItemStyled = styled.tr`
     border-radius: 2rem;
     font-size: 1rem;
     cursor: pointer;
+    margin: 0;
+  }
+
+  @media (max-width: 460px) {
+    img {
+      display: none;
+    }
   }
 `;
 

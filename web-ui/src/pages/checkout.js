@@ -18,7 +18,7 @@ const Checkout = () => {
 const StyledCheckout = styled.div`
   width: 80%;
   margin: 0 auto;
-  padding-top: 10rem;
+  padding: 10rem 0 4rem;
   display: flex;
 
   .billing-info {

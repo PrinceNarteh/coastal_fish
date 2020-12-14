@@ -1,16 +1,38 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
+import { motion } from "framer-motion";
 import Button from "../modules/global/components/Button";
 import Features from "../modules/global/components/Features";
 import ProductList from "../modules/global/components/ProductList";
 import Footer from "../modules/global/components/Footer";
 
-import { withApollo } from "../lib/apollo/apollo";
+import { withApollo, cache } from "../lib/apollo/apollo";
 
 const Home = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
+  useEffect(() => {
+    if (cache) {
+      const shoppingCart = cache.readQuery({
+        query: gql`
+          query ShoppingCart {
+            shoppingCart {
+              items {
+                id
+                name
+                price
+              }
+              totalPrice
+            }
+          }
+        `,
+      });
+
+      console.log(shoppingCart);
+    }
+  }, [cache]);
 
   if (loading) return <h2 className="page-title">Fetching Products</h2>;
   if (error) {
@@ -24,7 +46,10 @@ const Home = () => {
         <div className="content">
           <Title>
             Not Just Fish, <br />
-            But <span>Coastal Fish</span>
+            But{" "}
+            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              Coastal Fish
+            </motion.span>
           </Title>
           <p>Enjoy the taste of fresh fish right from the sea.</p>
           <Button>

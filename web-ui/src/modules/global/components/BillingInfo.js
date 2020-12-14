@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useState, Fragment } from "react";
 import { useRecoilValue } from "recoil";
 import { cartTotal } from "../../../lib/recoil/selectors";
-import Button from "./Button";
 import Title from "./Title";
 
 const BillingInfo = ({ handleOpenAlert }) => {
@@ -65,10 +64,6 @@ const BillingInfo = ({ handleOpenAlert }) => {
               <input type="tel" required />
               <span class="placeholder">Phone Number</span>
             </label>
-
-            <div className="button-wrapper">
-              <Button>Checkout</Button>
-            </div>
           </form>
         ) : null}
       </Delivery>
@@ -113,12 +108,6 @@ const Delivery = styled.div`
   form {
     width: 90%;
     margin: 0 auto;
-
-    .button-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-    }
   }
 
   .custom-field {

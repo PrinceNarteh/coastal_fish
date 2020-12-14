@@ -5,6 +5,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
 import { createUploadLink } from "apollo-upload-client";
 import { ApolloProvider } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
 
 // import customFetch from "./custom-fetch";
 import errorLink from "./handle-error";
@@ -45,7 +46,8 @@ export function withApollo(PageComponent, { ssr = true } = {}) {
 
   // Set the correct displayName in development
   if (process.env.NODE_ENV !== "production") {
-    const displayName = PageComponent.displayName || PageComponent.name || "Component";
+    const displayName =
+      PageComponent.displayName || PageComponent.name || "Component";
 
     if (displayName === "App") {
       console.warn("This withApollo HOC only works with PageComponents.");
@@ -139,11 +141,18 @@ function initApolloClient(initialState) {
  * Creates and configures the ApolloClient
  * @param  {Object} [initialState={}]
  */
+
+export const cache = new InMemoryCache();
+
 function createApolloClient(initialState = {}) {
-  const cache = new InMemoryCache().restore(initialState);
+  cache.restore(initialState);
   cache.writeData({
     data: {
-      cart: [],
+      shoppingCart: {
+        items: [],
+        totalPrice: 0,
+        __typename: "ShoppingCart",
+      },
     },
   });
 

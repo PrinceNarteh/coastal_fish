@@ -140,11 +140,11 @@ const RightNav = ({ open }) => {
               <a>Sign Up</a>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <div className="profile-picture">
               <img src="/static/img/users/profile.jpeg" alt="" />
             </div>
-            {/* <div className="menu">
+            <div className="menu">
               <h1>Prince Narteh</h1>
               <ul>
                 <li>
@@ -152,8 +152,8 @@ const RightNav = ({ open }) => {
                   <a href="#">My Profile</a>
                 </li>
               </ul>
-            </div> */}
-          </li>
+            </div>
+          </li> */}
         </>
       </Ul>
     </>

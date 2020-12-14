@@ -28,6 +28,7 @@ const CartListStyled = styled.div`
   table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 2rem;
   }
 
   th {

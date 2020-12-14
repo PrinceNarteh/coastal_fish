@@ -1,0 +1,18 @@
+type Product {
+  id: ID!
+  name: String!
+  quantity: Int!
+}
+
+type ShoppingCart {
+  items: [Product!]!
+  totalPrice: Int!
+}
+
+type Query {
+  shoppingCart: ShoppingCart
+}
+
+type Mutation {
+  addToCart(product: Product): void
+}
