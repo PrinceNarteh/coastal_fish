@@ -4,12 +4,14 @@ import styled from "styled-components";
 import CartList from "../modules/cart/CartList";
 import { useRecoilValue } from "recoil";
 import { cartState } from "../lib/recoil/atoms";
+import { cartTotal } from "../lib/recoil/selectors";
 // import Checkout from "../modules/global/components/Checkout";
 import AlertBox from "../modules/global/components/AlertBox";
 
 const Cart = () => {
   const [openAlert, setOpenAlert] = useState(false);
   const cart = useRecoilValue(cartState);
+  const total = useRecoilValue(cartTotal);
 
   if (cart.length === 0) {
     return (
@@ -34,7 +36,7 @@ const Cart = () => {
                 <div className="total">
                   <h2>Cart Total</h2>
                   <p>Ghs</p>
-                  <h6>200</h6>
+                  <h6>{total}</h6>
                 </div>
 
                 <Link href="/checkout">

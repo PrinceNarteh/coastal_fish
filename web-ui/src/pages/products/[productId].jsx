@@ -1,10 +1,34 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import Button from "../../modules/global/components/Button";
 import styled from "styled-components";
 import Product from "../../modules/products/Product";
 import { products } from "./index";
+import { useRecoilState } from "recoil";
+import { addToBasket, cartState } from "../../lib/recoil/atoms";
 
-const ProductDetail = (props) => {
+const ProductDetail = () => {
+  const [cart, setCart] = useRecoilState(cartState);
+  const router = useRouter();
+  const { productId } = router.query;
+
+  const product = products.find((product) => product.id == productId);
+  const { name, price, productImage, description } = product;
+
+  const [state, setState] = useState("fresh");
+
+  const handleAddToCart = (product) => {
+    console.log("Clicked!");
+    addToBasket(cart, setCart, product);
+  };
+
+  const handleChangePreference = (e) => {
+    const { value } = e.target;
+    setState(value);
+    product.preference = state;
+  };
+
   return (
     <>
       <ProductDetailStyled>
@@ -15,20 +39,20 @@ const ProductDetail = (props) => {
         </Back>
         <div className="product">
           <div className="product-image">
-            <img src="/static/img/products/shrimps.jpg" />
+            <img src={productImage} />
           </div>
           <div className="product-info">
-            <h1>Cassava Fish</h1>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit quisquam
-              repudiandae culpa impedit ratione aliquam.
-            </p>
-            <h3>GH¢ 50</h3>
+            <h1>{name}</h1>
+            <p>{description}</p>
+            <h3>GH¢ {price}</h3>
             <table>
               <tr>
                 <th>Preference:</th>
                 <td>
-                  <select name="" id="">
+                  <select
+                    name="preference"
+                    onChange={(e) => handleChangePreference(e)}
+                  >
                     <option value="fresh">Fresh</option>
                     <option value="smoked">Smoked</option>
                     <option value="fried">Fried</option>
@@ -42,7 +66,9 @@ const ProductDetail = (props) => {
                 </td>
               </tr>
             </table>
-            <Button>Add to Basket</Button>
+            <Button onClick={() => handleAddToCart(product)}>
+              Add to Basket
+            </Button>
           </div>
         </div>
       </ProductDetailStyled>
@@ -87,8 +113,8 @@ const ProductDetailStyled = styled.div`
       position: relative;
       width: 50%;
       height: 475px;
-      box-shadow: -15px 0 35px rgba(0, 0, 0, 0.1), 0 -15px 35px rgba(0, 0, 0, 0.1),
-        0 15px 35px rgba(0, 0, 0, 0.1);
+      box-shadow: -15px 0 35px rgba(0, 0, 0, 0.1),
+        0 -15px 35px rgba(0, 0, 0, 0.1), 0 15px 35px rgba(0, 0, 0, 0.1);
       border-radius: 1rem;
       overflow: hidden;
 
@@ -104,8 +130,8 @@ const ProductDetailStyled = styled.div`
       background-color: #fff;
       z-index: 1;
       padding: 35px 40px;
-      box-shadow: 15px 0 35px rgba(0, 0, 0, 0.1), 0 -15px 35px rgba(0, 0, 0, 0.1),
-        0 15px 35px rgba(0, 0, 0, 0.1);
+      box-shadow: 15px 0 35px rgba(0, 0, 0, 0.1),
+        0 -15px 35px rgba(0, 0, 0, 0.1), 0 15px 35px rgba(0, 0, 0, 0.1);
 
       h1 {
         font-size: 3rem;
@@ -121,6 +147,10 @@ const ProductDetailStyled = styled.div`
       table {
         border-collapse: separate;
         border-spacing: 0 1rem;
+      }
+
+      p {
+        font-size: 1.5rem;
       }
     }
   }

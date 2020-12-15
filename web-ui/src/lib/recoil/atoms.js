@@ -8,7 +8,9 @@ export const cartState = atom({
 export const addToBasket = (cart, setCart, product) => {
   const newCart = [...cart];
   // Checking if product is already in cart
-  const foundIndex = newCart.findIndex((item) => item.id === product.id);
+  const foundIndex = newCart.findIndex(
+    (item) => item.id === product.id && item.preference === product.preference
+  );
 
   // if found, increase quantity
   if (foundIndex >= 0) {
@@ -40,10 +42,12 @@ export const removeFromCart = (cart, setCart, id) => {
     setCart(newCart);
   }
 };
-export const increaseQty = (cart, setCart, id) => {
+export const increaseQty = (cart, setCart, product) => {
   const newCart = [...cart];
   // Checking if product is already in cart
-  const foundIndex = newCart.findIndex((item) => item.id === id);
+  const foundIndex = newCart.findIndex(
+    (item) => item.id === product.id && item.preference === product.preference
+  );
 
   // if found, increase quantity
   if (foundIndex >= 0) {
@@ -55,10 +59,12 @@ export const increaseQty = (cart, setCart, id) => {
   }
 };
 
-export const descreaseQty = (cart, setCart, id) => {
+export const descreaseQty = (cart, setCart, product) => {
   const newCart = [...cart];
   // Checking if product is already in cart
-  const foundIndex = newCart.findIndex((item) => item.id === id);
+  const foundIndex = newCart.findIndex(
+    (item) => item.id === product.id && item.preference === product.preference
+  );
 
   // if found, increase quantity
   if (foundIndex >= 0) {

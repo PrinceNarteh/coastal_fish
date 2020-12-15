@@ -11,12 +11,12 @@ const CartItem = ({ item, idx }) => {
   const [cart, setCart] = useRecoilState(cartState);
   const { name, price, productImage, quantity, preference, id } = item;
 
-  const handleIncreaseQty = (id) => {
-    increaseQty(cart, setCart, id);
+  const handleIncreaseQty = (item) => {
+    increaseQty(cart, setCart, item);
   };
 
-  const handleDecreaseQty = (id) => {
-    descreaseQty(cart, setCart, id);
+  const handleDecreaseQty = (item) => {
+    descreaseQty(cart, setCart, item);
   };
 
   const handleRemoveFromCart = (id) => {
@@ -44,11 +44,11 @@ const CartItem = ({ item, idx }) => {
       <td>{preference}</td>
       <td>
         <div className="item-inc">
-          <button className="btn" onClick={() => handleDecreaseQty(id)}>
+          <button className="btn" onClick={() => handleDecreaseQty(item)}>
             &lsaquo;
           </button>
           {quantity}
-          <button className="btn" onClick={() => handleIncreaseQty(id)}>
+          <button className="btn" onClick={() => handleIncreaseQty(item)}>
             &rsaquo;
           </button>
         </div>

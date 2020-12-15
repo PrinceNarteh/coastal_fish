@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const Button = ({ children, danger, fontSize }) => {
+const Button = ({ children, danger, fontSize, ...props }) => {
   return (
-    <ButtonStyled danger={danger} fontSize={fontSize}>
+    <ButtonStyled danger={danger} fontSize={fontSize} {...props}>
       {children}
     </ButtonStyled>
   );

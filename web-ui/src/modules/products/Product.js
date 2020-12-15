@@ -6,7 +6,7 @@ import { cartState, addToBasket } from "../../lib/recoil/atoms";
 
 const Product = ({ product }) => {
   const [cart, setCart] = useRecoilState(cartState);
-  const { name, price, productImage, id, preference } = product;
+  const { name, price, productImage, id } = product;
 
   const handleAddToCart = (product) => {
     addToBasket(cart, setCart, product);
@@ -25,7 +25,11 @@ const Product = ({ product }) => {
         <Link href={`/products/${id}`}>
           <a className="btn">Details</a>
         </Link>
-        <button className="btn" type="button" onClick={() => handleAddToCart(product)}>
+        <button
+          className="btn"
+          type="button"
+          onClick={() => handleAddToCart(product)}
+        >
           Add To Cart
         </button>
       </div>
@@ -118,6 +122,11 @@ const ProductStyled = styled.div`
     outline: none;
     cursor: pointer;
     font-weight: bold;
+
+    &::hover {
+      background-color: #fff;
+      color: #333;
+    }
   }
 `;
 
