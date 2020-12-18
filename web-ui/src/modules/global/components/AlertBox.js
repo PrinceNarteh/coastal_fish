@@ -3,13 +3,13 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { cartState } from "../../../lib/recoil/atoms";
 
-const AlertBox = ({ handleOpenAlert }) => {
+const AlertBox = ({ closeAlert }) => {
   const [cart, setCart] = useRecoilState(cartState);
   const router = useRouter();
 
   const handleCloseAlert = () => {
     setCart([]);
-    handleOpenAlert(false);
+    closeAlert(false);
     router.push("/products");
   };
 
@@ -19,7 +19,7 @@ const AlertBox = ({ handleOpenAlert }) => {
       <div className="alert-box">
         <img src="/static/img/icons/check.png" alt="" />
         <header>Success</header>
-        <p>Fish has been ordered.</p>
+        <p>Thank you for doing business with us.</p>
         <button onClick={handleCloseAlert}>Close</button>
       </div>
     </StyledAlertBox>
@@ -30,14 +30,14 @@ export default AlertBox;
 const StyledAlertBox = styled.div`
   position: absolute;
   width: 100%;
-  height: 100%;
-  top: 0;
+  min-height: 100vh;
+  top: 5rem;
   left: 0;
 
   .background {
     position: absolute;
     width: 100%;
-    height: 100%;
+    min-height: 120vh;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
@@ -50,7 +50,7 @@ const StyledAlertBox = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -45%);
     max-width: 450px;
     width: 100%;
     background: white;

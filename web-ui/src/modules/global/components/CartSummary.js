@@ -2,13 +2,17 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { cartState } from "../../../lib/recoil/atoms";
+import { grandTotal, cartTotal } from "../../../lib/recoil/selectors";
 import CartItem from "./CartItem";
 import Title from "./Title";
 import Button from "./Button";
 import { motion } from "framer-motion";
 
-const CartSummary = () => {
+const CartSummary = ({ openAlert }) => {
   const cart = useRecoilValue(cartState);
+  const sTotal = useRecoilValue(cartTotal);
+  const gTotal = useRecoilValue(grandTotal);
+
   const [open, setOpen] = useState("cash");
   return (
     <StyledCartSummary>
@@ -22,15 +26,15 @@ const CartSummary = () => {
       ))}
       <Row>
         <p>Subtotal</p>
-        <p>Gh200</p>
+        <p>Gh {sTotal}</p>
       </Row>
       <Row>
         <p>Delivery Cost:</p>
-        <p>GH10</p>
+        <p>GH20</p>
       </Row>
       <Row>
         <p>Total:</p>
-        <p>GH210</p>
+        <p>GH{gTotal}</p>
       </Row>
 
       <h1>Mode of Payment</h1>
@@ -84,7 +88,9 @@ const CartSummary = () => {
           </motion.div>
         )}
         <ButtonWrapper>
-          <Button fontSize={2}>Place Order</Button>
+          <Button fontSize={2} onClick={() => openAlert(true)}>
+            Place Order
+          </Button>
         </ButtonWrapper>
       </div>
     </StyledCartSummary>

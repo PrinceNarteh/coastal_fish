@@ -6,14 +6,9 @@ import { totalItemsInCart } from "../../../lib/recoil/selectors";
 import Search from "../../products/Search";
 
 const LogoStyled = styled.div`
+  margin-top: 0.6rem;
   display: flex;
   align-items: center;
-  font-size: 2.2rem;
-
-  span {
-    line-height: 2.5rem;
-    color: crimson;
-  }
 `;
 
 const Ul = styled.ul`
@@ -100,7 +95,11 @@ const RightNav = ({ open }) => {
     <>
       <LogoStyled>
         <Logo>
-          <img src="/static/img/logo.png" alt="" />
+          <Link href="/">
+            <a>
+              <img src="/static/img/logo.png" alt="" />
+            </a>
+          </Link>
         </Logo>
       </LogoStyled>
       {pathname === "/products" ? <Search /> : null}

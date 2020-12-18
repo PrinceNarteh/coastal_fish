@@ -3,6 +3,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { cartState, addToBasket } from "../../lib/recoil/atoms";
+import { cache } from "../../lib/apollo/apollo";
 
 const Product = ({ product }) => {
   const [cart, setCart] = useRecoilState(cartState);
@@ -123,9 +124,8 @@ const ProductStyled = styled.div`
     cursor: pointer;
     font-weight: bold;
 
-    &::hover {
-      background-color: #fff;
-      color: #333;
+    ::hover {
+      background-color: red;
     }
   }
 `;

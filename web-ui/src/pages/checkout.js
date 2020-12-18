@@ -1,15 +1,20 @@
 import styled from "styled-components";
+import { useState } from "react";
 import BillingInfo from "../modules/global/components/BillingInfo";
 import CartSummary from "../modules/global/components/CartSummary";
+import AlertBox from "../modules/global/components/AlertBox";
 
 const Checkout = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <StyledCheckout>
       <div className="billing-info">
         <BillingInfo />
       </div>
+      {open && <AlertBox closeAlert={setOpen} />}
       <div className="order-summary">
-        <CartSummary />
+        <CartSummary openAlert={setOpen} />
       </div>
     </StyledCheckout>
   );

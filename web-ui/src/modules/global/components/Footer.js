@@ -6,12 +6,15 @@ const Footer = () => {
       <div className="footer-left">
         <img src="/static/img/logo.png" alt="logo" />
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, iure qui vel
-          quidem incidunt, officiis dolorum quisquam possimus provident aperiam molestiae
+          Coastal Fish is a wholesale and retail sea fish company, delivering
+          services to doorsteps of clients. We buy the fish from source,
+          process, package it and deliver to clients on orders so they can have
+          it in its freshly state and also have their sea fish even when it is
+          out of season.
         </p>
       </div>
       <ul className="footer-right">
-        <li>
+        <li className="features">
           <h2>Features</h2>
           <ul>
             <li>Convenient</li>
@@ -29,7 +32,8 @@ const Footer = () => {
               <span>coastalfish.team@gmail.com</span>
             </li>
             <li>
-              <img src="/static/img/icons/call.png" alt="" /> <span>0244000000</span>
+              <img src="/static/img/icons/call.png" alt="" />{" "}
+              <span>0244000000</span>
             </li>
             <li>
               <div className="socials">
@@ -63,9 +67,12 @@ const StyledFooter = styled.footer`
 
   .footer-left {
     margin-left: 1.2rem;
+    padding: 2rem 0;
+    text-align: justify;
 
     img {
       width: 10rem;
+      float: left;
     }
 
     .socials {
@@ -88,6 +95,12 @@ const StyledFooter = styled.footer`
     h2 {
       font-size: 1.7rem;
       color: crimson;
+    }
+
+    .features {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 `;
